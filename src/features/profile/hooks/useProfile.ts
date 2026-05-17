@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
-const useProfile = () => {
-  const [profile, setProfile] = useState<any>(null);
+export const useProfile = () => {
+  const profile = useSelector((state: RootState) => state.profile);
+  const gamification = useSelector((state: RootState) => state.gamification);
 
-  useEffect(() => {
-    setProfile({ name: 'Student' });
-  }, []);
-
-  return { profile };
+  return {
+    ...profile,
+    gamification,
+  };
 };
-
-export default useProfile;
